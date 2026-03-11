@@ -1,0 +1,50 @@
+<div class="workflow-list-page">
+  <div class="page-header">
+    <h1>Workflows</h1>
+    @if (canEdit()) {
+      <a routerLink="/app/workflows/create" class="btn-create">Create Workflow</a>
+    }
+  </div>
+
+  <app-workflow-filters (filtersChange)="onFiltersChange($event)" />
+
+  <app-error-banner
+    [message]="error$ | async"
+  />
+
+  @if (loading$ | async) {
+    <div class="loading">Loading workflows...</div>
+  } @else {
+    <app-workflow-list
+      [workflows]="(workflows$ | async) ?? []"
+      [canEdit]="canEdit()"
+      (deleteWorkflow)="onDelete($event)"
+    />
+    <div class="pagination" aria-label="Workflow list pagination">
+      @let page = page$ | async;
+      @let pageSize = pageSize$ | async;
+      @let total = total$ | async;
+      @if (page && pageSize && total && total > pageSize) {
+        <button
+          type="button"
+          class="btn-page"
+          [disabled]="page === 1"
+          (click)="onPageChange(page - 1)"
+        >
+          Previous
+        </button>
+        <span class="page-info">
+          Page {{ page }} of {{ totalPages(total, pageSize) }}
+        </span>
+        <button
+          type="button"
+          class="btn-page"
+          [disabled]="page * pageSize >= total"
+          (click)="onPageChange(page + 1)"
+        >
+          Next
+        </button>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,126 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/azure-blue.css';
+
+:root,
+[data-theme="light"] {
+  --theme-bg: #fffbf7;
+  --theme-surface: #ffffff;
+  --theme-surface-alt: #fff7ed;
+  --theme-text: #1c1917;
+  --theme-text-muted: #57534e;
+  --theme-border: #fed7aa;
+  --theme-border-light: #ffedd5;
+  --theme-accent: #ea580c;
+  --theme-accent-hover: #c2410c;
+  --theme-accent-light: #fb923c;
+  --sidebar-bg: #ffedd5;
+  --sidebar-text: #7c2d12;
+  --sidebar-hover: rgba(194, 65, 12, 0.1);
+  --navbar-bg: #ffffff;
+  --navbar-text: #1c1917;
+  --navbar-border: #fed7aa;
+  --login-bg: linear-gradient(135deg, #fff7ed 0%, #ffedd5 50%, #fed7aa 100%);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --theme-bg: #1c1917;
+  --theme-surface: #292524;
+  --theme-surface-alt: #44403c;
+  --theme-text: #fafaf9;
+  --theme-text-muted: #a8a29e;
+  --theme-border: #57534e;
+  --theme-border-light: #44403c;
+  --theme-accent: #fb923c;
+  --theme-accent-hover: #f97316;
+  --theme-accent-light: #fdba74;
+  --sidebar-bg: #292524;
+  --sidebar-text: #fafaf9;
+  --sidebar-hover: rgba(251, 146, 60, 0.15);
+  --navbar-bg: #1c1917;
+  --navbar-text: #fafaf9;
+  --navbar-border: #44403c;
+  --login-bg: linear-gradient(135deg, #1c1917 0%, #292524 50%, #44403c 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--theme-bg) !important;
+  color: var(--theme-text) !important;
+}
+
+/* Global form elements - light orange/white theme */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+  background: var(--theme-surface) !important;
+  color: var(--theme-text) !important;
+  border: 1px solid var(--theme-border) !important;
+}
+
+input::placeholder,
+input::-webkit-input-placeholder {
+  color: var(--theme-text-muted) !important;
+  opacity: 0.7;
+}
+
+/* Global tables - light theme */
+table {
+  background: var(--theme-surface) !important;
+  color: var(--theme-text) !important;
+  border-color: var(--theme-border-light) !important;
+}
+
+th {
+  background: var(--theme-surface-alt) !important;
+  color: var(--theme-text-muted) !important;
+  border-color: var(--theme-border-light) !important;
+}
+
+td {
+  color: var(--theme-text) !important;
+  border-color: var(--theme-border-light) !important;
+  background: var(--theme-surface) !important;
+}
+
+/* Ensure all containers use light background */
+app-root,
+app-shell,
+app-sidebar,
+app-navbar,
+app-login,
+app-dashboard,
+app-workflow-list,
+app-workflow-list-page,
+app-workflow-filters,
+app-workflow-form,
+app-workflow-create,
+app-workflow-edit {
+  display: block;
+  background: transparent;
+}
+
+/* Content areas inherit theme */
+main,
+.content-area,
+.main-content {
+  background: var(--theme-bg) !important;
+  color: var(--theme-text) !important;
+}

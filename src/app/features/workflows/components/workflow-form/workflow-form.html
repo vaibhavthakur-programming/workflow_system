@@ -1,0 +1,64 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="workflow-form">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" placeholder="Workflow name" />
+    @if (form.get('name')?.invalid && form.get('name')?.touched) {
+      @if (form.get('name')?.errors?.['required']) {
+        <span class="error">Name is required</span>
+      }
+      @if (form.get('name')?.errors?.['minlength']) {
+        <span class="error">Name must be at least 2 characters</span>
+      }
+      @if (form.get('name')?.errors?.['uniqueName']) {
+        <span class="error">This workflow name already exists</span>
+      }
+    }
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="priority">Priority</label>
+      <select id="priority" formControlName="priority">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select id="status" formControlName="status">
+        <option value="Draft">Draft</option>
+        <option value="In Review">In Review</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="assignedUsers">Assigned Users (comma-separated)</label>
+    <input
+      id="assignedUsers"
+      type="text"
+      formControlName="assignedUsers"
+      placeholder="John, Jane, Bob"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="dueDate">Due Date</label>
+    <input id="dueDate" type="date" formControlName="dueDate" />
+    @if (form.get('dueDate')?.invalid && form.get('dueDate')?.touched) {
+      <span class="error">Due date is required</span>
+    }
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn-save" [disabled]="form.invalid || form.pending">
+      Save
+    </button>
+    <button type="button" class="btn-cancel" (click)="onCancel()">
+      Cancel
+    </button>
+  </div>
+</form>

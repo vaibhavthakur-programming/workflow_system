@@ -1,0 +1,57 @@
+<div class="workflow-list">
+  @if (workflows().length === 0) {
+    <div class="empty">No workflows found</div>
+  } @else {
+    <div class="table-container">
+      <table class="workflow-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Assigned</th>
+            <th>Due Date</th>
+            @if (canEdit()) {
+              <th>Actions</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (workflow of workflows(); track trackByWorkflow($index, workflow)) {
+            <tr>
+              <td>
+                @if (canEdit()) {
+                  <a [routerLink]="['/app/workflows/edit', workflow.id]" class="workflow-link">
+                    {{ workflow.name }}
+                  </a>
+                } @else {
+                  {{ workflow.name }}
+                }
+              </td>
+              <td>
+                <span class="priority" [attr.data-priority]="workflow.priority">
+                  {{ workflow.priority }}
+                </span>
+              </td>
+              <td>
+                <span class="status" [attr.data-status]="workflow.status">
+                  {{ workflow.status }}
+                </span>
+              </td>
+              <td>{{ workflow.assignedUsers.join(', ') }}</td>
+              <td>{{ workflow.dueDate | date:'mediumDate' }}</td>
+              @if (canEdit()) {
+                <td>
+                  <a [routerLink]="['/app/workflows/edit', workflow.id]" class="btn-edit">Edit</a>
+                  <button type="button" class="btn-delete" (click)="onDelete(workflow.id)">
+                    Delete
+                  </button>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

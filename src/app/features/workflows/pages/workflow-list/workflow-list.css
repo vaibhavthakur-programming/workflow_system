@@ -1,0 +1,37 @@
+.workflow-list-page {
+  max-width: 1200px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--theme-text);
+}
+
+.btn-create {
+  padding: 0.5rem 1rem;
+  background: var(--theme-accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-create:hover {
+  background: var(--theme-accent-hover);
+}
+
+.loading {
+  padding: 2rem;
+  text-align: center;
+  color: var(--theme-text-muted);
+}

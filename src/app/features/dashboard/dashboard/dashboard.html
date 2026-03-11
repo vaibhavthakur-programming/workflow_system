@@ -1,0 +1,64 @@
+<div class="dashboard">
+  <h1>Dashboard</h1>
+  <p class="subtitle">Workflow statistics overview</p>
+
+  @if (loading$ | async) {
+    <div class="loading">Loading...</div>
+  } @else {
+    @let workflows = workflows$ | async;
+    @if (workflows; as list) {
+      @let stats = getStats(list);
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">{{ stats.total }}</span>
+          <span class="stat-label">Total Workflows</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ stats.draft }}</span>
+          <span class="stat-label">Draft</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ stats.inReview }}</span>
+          <span class="stat-label">In Review</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ stats.approved }}</span>
+          <span class="stat-label">Approved</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ stats.rejected }}</span>
+          <span class="stat-label">Rejected</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ stats.overdue }}</span>
+          <span class="stat-label">Overdue</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">
+            {{ stats.avgCompletionDays | number: '1.1-1' }}
+          </span>
+          <span class="stat-label">Avg Completion (days)</span>
+        </div>
+      </div>
+
+      <div class="chart-section">
+        <h2>Workflows by Status</h2>
+        <ngx-charts-bar-vertical
+          role="img"
+          aria-label="Bar chart showing total workflows by status"
+          [view]="view"
+          [results]="stats.chartData"
+          [scheme]="colorScheme"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+        />
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,14 @@
+<div class="workflow-edit">
+  <h1>Edit Workflow</h1>
+  @if (loading$ | async) {
+    <div class="loading">Loading...</div>
+  } @else if (workflow$ | async; as workflow) {
+    <app-workflow-form
+      [workflow]="workflow"
+      (saveClick)="onSave($event)"
+      (cancelClick)="onCancel()"
+    />
+  } @else {
+    <div class="not-found">Workflow not found</div>
+  }
+</div>

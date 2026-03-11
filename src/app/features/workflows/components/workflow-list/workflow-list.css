@@ -1,0 +1,99 @@
+.workflow-list {
+  background: var(--theme-surface);
+  border-radius: 0.5rem;
+  border: 1px solid var(--theme-border);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(234, 88, 12, 0.08);
+}
+
+.empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--theme-text-muted);
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.workflow-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.workflow-table th,
+.workflow-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--theme-border-light);
+}
+
+.workflow-table th {
+  background: var(--theme-surface-alt);
+  color: var(--theme-text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.workflow-table td {
+  color: var(--theme-text);
+  font-size: 0.875rem;
+}
+
+.workflow-link {
+  color: var(--theme-accent);
+  text-decoration: none;
+}
+
+.workflow-link:hover {
+  text-decoration: underline;
+}
+
+.priority[data-priority="High"],
+.status[data-status="Approved"] {
+  color: #15803d;
+}
+
+.priority[data-priority="Medium"],
+.status[data-status="In Review"] {
+  color: #a16207;
+}
+
+.priority[data-priority="Low"],
+.status[data-status="Draft"] {
+  color: var(--theme-text-muted);
+}
+
+.status[data-status="Rejected"] {
+  color: #b91c1c;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.btn-edit {
+  color: var(--theme-accent);
+  text-decoration: none;
+  border: 1px solid var(--theme-accent);
+}
+
+.btn-edit:hover {
+  background: rgba(234, 88, 12, 0.1);
+}
+
+.btn-delete {
+  background: transparent;
+  border: 1px solid #b91c1c;
+  color: #b91c1c;
+}
+
+.btn-delete:hover {
+  background: rgba(220, 38, 38, 0.1);
+}

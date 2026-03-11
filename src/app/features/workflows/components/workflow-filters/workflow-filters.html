@@ -1,0 +1,52 @@
+<div class="filters">
+  <div class="filter-group">
+    <label for="search">Search</label>
+    <input
+      id="search"
+      type="text"
+      placeholder="Search by name..."
+      (input)="onSearchInput($any($event.target).value)"
+    />
+  </div>
+  <div class="filter-group">
+    <label for="status">Status</label>
+    <select id="status" [value]="status()" (change)="onStatusChange($any($event.target).value)">
+      <option value="">All</option>
+      <option value="Draft">Draft</option>
+      <option value="In Review">In Review</option>
+      <option value="Approved">Approved</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="dateFrom">Due from</label>
+    <input
+      id="dateFrom"
+      type="date"
+      [value]="dateFrom() ?? ''"
+      (change)="onDateFromChange($any($event.target).value)"
+    />
+  </div>
+  <div class="filter-group">
+    <label for="dateTo">Due to</label>
+    <input
+      id="dateTo"
+      type="date"
+      [value]="dateTo() ?? ''"
+      (change)="onDateToChange($any($event.target).value)"
+    />
+  </div>
+  <div class="filter-group">
+    <label for="assignedUser">Assigned user</label>
+    <select
+      id="assignedUser"
+      [value]="assignedUser() ?? ''"
+      (change)="onAssignedUserChange($any($event.target).value)"
+    >
+      <option value="">All</option>
+      @for (user of availableUsers; track user.id) {
+        <option [value]="user.name">{{ user.name }}</option>
+      }
+    </select>
+  </div>
+</div>
